@@ -1,0 +1,26 @@
+.titulo{
+    margin: 32px 32px 64px 64px;
+    font-size: 64px;
+    font-weight: 700;
+    color: #fff;
+}
+.subtitulo{
+    color: #F16A19;
+    font-weight: 700;
+    font-size: 24px
+}
+.alingmentBaseline{
+    align-items: baseline;
+}
+.header{
+    padding: 32px;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.button,
+.button:hover
+{
+    background-color: #F16A19 !important;
+    padding: 0px 25px 0px 25px;
+    border-radius: 3px;
+}

@@ -1,0 +1,20 @@
+.corpo{
+    background-color: #000;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.texto{
+    color: #F1AF19;
+    font-size: 25px;
+}
+.button,
+.button:hover
+{
+    background-color: #F1AF19 !important;
+    padding: 0px 25px 0px 25px;
+    border-radius: 3px;
+}

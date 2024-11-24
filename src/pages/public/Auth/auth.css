@@ -1,0 +1,18 @@
+.sixty{
+    width: 60%;
+    background-image: url(../../../../public/assets/Atletica.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: black;
+}
+.forty{
+    width: 40%;
+}
+.title{
+    font-size: 35px;
+    color: #F1AF19;
+    font-weight: 700;
+}
+.bodyFlex{
+height: 100vh !important;
+}
