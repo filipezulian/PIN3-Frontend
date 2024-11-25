@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
     const token = Cookies.get("accessToken");
     const navigate = useNavigate();
 
@@ -22,8 +21,6 @@ export const AuthProvider = ({ children }) => {
                         toast.error("Sessão expirada!");
                         Cookies.remove("accessToken");
                         navigate("/login");
-                    } else {
-                        setUser(decoded);
                     }
                 } catch (error) {
                     console.error("Invalid token");
@@ -51,7 +48,6 @@ export const AuthProvider = ({ children }) => {
                     secure: false,
                     sameSite: "strict",
                 });
-                setUser(decoded);
             }
             return response.data;
         } catch (err) {

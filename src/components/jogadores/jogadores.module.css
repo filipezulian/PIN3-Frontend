@@ -1,0 +1,102 @@
+.container {
+  display: flex;
+  gap: 24px;
+  padding: 0 16px;
+}
+
+.formContainer {
+  flex: 0 0 370px;
+  height: 750px;
+  background: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+
+.formContainer h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center; 
+  margin-top: auto; 
+}
+
+.btnCriarNovo,
+.btnCriarNovo:hover
+ {
+  width: 150px;
+  height: 40px;
+  background-color: #F1AF19 !important;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tableContainer {
+  flex: 1; 
+  height: 750px;
+  background: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.cancelButton,
+.cancelButton:hover {
+  border-radius: 5px;
+  background-color: #B3B3B3 !important;
+  color: #FFFFFF !important;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.deleteButton,
+.deleteButton:hover {
+  border-radius: 5px;
+  background-color: #FF4D4F !important;
+  color: #FFFFFF !important;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.saveButton,
+.saveButton:hover {
+  border-radius: 5px;
+  background-color: #F1AF19 !important; 
+  color: #FFFFFF !important;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.statsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+.statsTable th,
+.statsTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.statsTable th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
