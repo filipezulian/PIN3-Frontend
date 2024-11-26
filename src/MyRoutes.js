@@ -11,6 +11,8 @@ import Campeonatos from "./pages/authenticated/Campeonatos/Campeonatos";
 import Jogadores from "./pages/authenticated/Jogadores/Jogadores"
 import Times from "./pages/authenticated/Times/Times"
 import Chaveamentos from "./pages/authenticated/Chaveamentos/Chaveamentos"
+import GenerateChaveamento from "./pages/authenticated/Chaveamentos/GenerateChaveamento";
+import GeneratedBracket from "./pages/authenticated/Chaveamentos/GeneratedBracket";
 
 const AuthenticatedRoutes = ({ children }) => {
     const user = Cookies.get("user");
@@ -72,6 +74,26 @@ const MyRoutes = () => {
                     <AuthenticatedRoutes>
                         <SystemLayout>
                             <Chaveamentos />
+                        </SystemLayout>
+                    </AuthenticatedRoutes>
+                }
+            />
+            <Route
+                path="/chaveamentos/:id"
+                element={
+                    <AuthenticatedRoutes>
+                        <SystemLayout>
+                            <GenerateChaveamento />
+                        </SystemLayout>
+                    </AuthenticatedRoutes>
+                }
+            />
+            <Route
+                path="/bracket"
+                element={
+                    <AuthenticatedRoutes>
+                        <SystemLayout>
+                            <GeneratedBracket />
                         </SystemLayout>
                     </AuthenticatedRoutes>
                 }
