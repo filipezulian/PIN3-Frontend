@@ -37,7 +37,7 @@ const GerarTimeTable = () => {
                 setJogadores(response.data);
             } catch (err) {
                 toast.error(
-                    err.response?.data?.message || "Erro ao carregar jogadores. Tente novamente."
+                    err.response?.data?.message
                 );
             } finally {
                 setLoadingJogadores(false);
@@ -59,7 +59,7 @@ const GerarTimeTable = () => {
                 setEsportes(response.data);
             } catch (err) {
                 toast.error(
-                    err.response?.data?.message || "Erro ao carregar esportes. Tente novamente."
+                    err.response?.data?.message
                 );
             } finally {
                 setLoadingEsportes(false);
@@ -130,8 +130,6 @@ const GerarTimeTable = () => {
             jogadores: jogadoresIds,
         };
 
-        console.log("Payload enviado:", payload);
-
         try {
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/time/gerar`, payload, {
                 headers: { Authorization: token },
@@ -140,7 +138,7 @@ const GerarTimeTable = () => {
             toast.success("Times gerados com sucesso!");
         } catch (error) {
             console.error("Erro ao gerar os times:", error.response?.data || error.message);
-            toast.error("Erro ao gerar os times. Tente novamente.");
+            toast.error(error.response?.data.message);
         }
     };
 
