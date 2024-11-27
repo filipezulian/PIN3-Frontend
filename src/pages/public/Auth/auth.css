@@ -5,14 +5,22 @@
     background-size: contain;
     background-color: black;
 }
-.forty{
+.forty {
     width: 40%;
+    display: flex; /* Adiciona flexbox para centralizar */
+    flex-direction: column; /* Garante alinhamento vertical */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
 }
-.title{
-    font-size: 35px;
-    color: #F1AF19;
+
+.title {
+    font-size: 50px; /* Aumenta o tamanho da fonte */
+    color: #F1AF19 !important;
     font-weight: 700;
+    text-align: center; 
+    margin-bottom: 20px; 
 }
 .bodyFlex{
 height: 100vh !important;
 }
+

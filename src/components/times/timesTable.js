@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Table, Spin, Button, Form, Input, Select } from 'antd';
 import axios from "axios";
 import { toast } from 'react-toastify';
@@ -17,40 +17,36 @@ const TimesTable = () => {
     const [filtros, setFiltros] = useState({ nome: "", genero: "" });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditarTimeModalOpen, setIsEditarTimeModalOpen] = useState(false);
-    const [novoTime, setNovoTime] = useState({ nome: "", genero: "" });
+    const [novoTime, setNovoTime] = useState({ nome: "", genero: "", quantidadeJogadores: null });
     const [timeSelecionado, setTimeSelecionado] = useState(null);
     const navigate = useNavigate();
 
+    // Função para buscar times com useCallback
+    const fetchTimes = useCallback(async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/time`, {
+                headers: {
+                    Authorization: token,
+                },
+            });
+            const updatedTimes = response.data.map((time) => ({
+                tim_name: time.tim_name || "",
+                tim_gender: time.tim_gender || "",
+                ...time,
+            }));
+            setTimes(updatedTimes);
+            setTimesFiltrados(applyFilters(updatedTimes, filtros)); // Aplica filtros
+        } catch (err) {
+            toast.error(err.response?.data?.message || "Erro ao buscar times.");
+        }
+    }, [token, filtros]);
+
     useEffect(() => {
-        const getTimes = async () => {
-            try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/time`, {
-                    headers: {
-                        'Authorization': token
-                    }
-                });
-                setTimes(
-                    response.data.map((time) => ({
-                        tim_name: time.tim_name || "",
-                        tim_gender: time.tim_gender || "",
-                        ...time,
-                    }))
-                );
-                setTimesFiltrados(response.data);
-            } catch (err) {
-                toast.error(err.response.data.message);
-            }
-        };
+        fetchTimes();
+    }, [fetchTimes]);
 
-        getTimes();
-    }, [token]);
-
-    const handleNovoTime = (time) => {
-        setTimes((prev) => {
-            const updatedTimes = [...prev, time];
-            setTimesFiltrados(applyFilters(updatedTimes, filtros)); // Atualiza a tabela
-            return updatedTimes;
-        });
+    const handleNovoTime = async () => {
+        await fetchTimes(); // Atualiza a lista de times após criar um novo
     };
 
     const applyFilters = (allTimes, currentFilters) => {
@@ -67,7 +63,6 @@ const TimesTable = () => {
         });
     };
 
-
     const handleFiltroChange = (field, value) => {
         const updatedFilters = { ...filtros, [field]: value };
         setFiltros(updatedFilters);
@@ -81,8 +76,8 @@ const TimesTable = () => {
     };
 
     const fecharModal = () => {
-        setIsModalOpen(false);
         setNovoTime({ nome: "", genero: "", quantidadeJogadores: null });
+        setIsModalOpen(false);
     };
 
     const abrirEditarTimeModal = (time) => {
@@ -96,7 +91,7 @@ const TimesTable = () => {
     };
 
     const handleGerarTimes = () => {
-        navigate("/gerarTime"); 
+        navigate("/gerarTime");
     };
 
     const columns = [
@@ -146,7 +141,7 @@ const TimesTable = () => {
                         type="primary"
                         className={styles.btnCriarNovo}
                         onClick={abrirModal}
-                        style={{ marginRight: '10px' }} // Adiciona espaçamento
+                        style={{ marginRight: '10px' }}
                     >
                         Criar Novo
                     </Button>
@@ -154,7 +149,7 @@ const TimesTable = () => {
                         type="primary"
                         className={styles.btnGerarTimes}
                         onClick={handleGerarTimes}
-                        style={{ marginLeft: '10px' }} // Adiciona espaçamento
+                        style={{ marginLeft: '10px' }}
                     >
                         Gerar Times
                     </Button>
@@ -163,11 +158,11 @@ const TimesTable = () => {
 
             {/* Tabela de times */}
             <div className={styles.tableContainer}>
-                <Spin spinning={!times}>
+                <Spin spinning={times.length === 0}>
                     <Table
                         columns={columns}
                         dataSource={timesFiltrados}
-                        pagination={{ size: 10 }}
+                        pagination={{ pageSize: 10 }}
                         rowKey="tim_id"
                     />
                 </Spin>

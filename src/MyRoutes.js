@@ -14,6 +14,7 @@ import Chaveamentos from "./pages/authenticated/Chaveamentos/Chaveamentos"
 import GenerateChaveamento from "./pages/authenticated/Chaveamentos/GenerateChaveamento";
 import GeneratedBracket from "./pages/authenticated/Chaveamentos/GeneratedBracket";
 import GerarTimeTable from "./components/times/gerarTimeTable";
+import Cadastro from "./pages/public/Cadastro/TelaCadastro"; 
 
 const AuthenticatedRoutes = ({ children }) => {
     const user = Cookies.get("user");
@@ -27,6 +28,7 @@ const MyRoutes = () => {
             {/* Public Routes */}
             <Route element={<TelaInicial />} path="/" />
             <Route element={<TelaAuthLayout children={<Login />} />} path="/login" />
+            <Route element={<TelaAuthLayout children={<Cadastro />} />} path="/cadastro" />
 
             {/* Authenticated Route */}
             <Route

@@ -72,63 +72,71 @@ const NovoTimeModal = ({ open, onClose, onCreate, novoTime, setNovoTime, onUpdat
     ];
 
     const handleCreate = async () => {
-        if (loading) return; 
+        if (loading) return;
         setLoading(true);
-
+    
+        // Validação dos campos
         if (!novoTime.nome || !novoTime.genero || jogadoresSelecionados.length !== novoTime.quantidadeJogadores) {
             toast.error(`Preencha todos os campos e selecione exatamente ${novoTime.quantidadeJogadores} jogadores.`);
-            setLoading(false); 
+            setLoading(false);
             return;
         }
-
+    
         try {
             const payload = {
                 tim_name: novoTime.nome,
                 tim_gender: novoTime.genero,
                 times: jogadoresSelecionados,
             };
-
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/time`, payload, {
+    
+            await axios.post(`${process.env.REACT_APP_API_URL}/time`, payload, {
                 headers: {
                     Authorization: token,
                 },
             });
-
+    
             toast.success("Time criado com sucesso!");
-            onCreate(response.data); 
-            onUpdateJogadores();
-            onClose(); 
+    
+            // Atualiza a lista de times ao fechar o modal
+            onCreate();
+            handleReset();
         } catch (error) {
             toast.error(error.response?.data?.message || "Erro ao criar time.");
         } finally {
             setLoading(false);
         }
     };
+    
+    const handleReset = () => {
+        setNovoTime({ nome: '', genero: '', quantidadeJogadores: 0 }); // Redefine o novo time
+        setJogadoresSelecionados([]); // Limpa os jogadores selecionados
+        onClose(); // Fecha o modal
+    };
 
     return (
         <Modal
-            title="Novo Time"
-            open={open}
-            onCancel={onClose}
-            footer={[
-                <Button
-                    key="cancelar"
-                    onClick={onClose}
-                    className={styles.cancelButton}
-                >
-                    Cancelar
-                </Button>,
-                <Button
-                    key="adicionar"
-                    type="primary"
-                    onClick={handleCreate}
-                    className={styles.addButton}
-                    loading={loading} 
-                >
-                    Adicionar
-                </Button>,
-            ]}
+    title="Novo Time"
+    open={open}
+    onCancel={handleReset} // Use a função para limpar o estado ao fechar
+    footer={[
+        <Button
+            key="cancelar"
+            onClick={handleReset} // Use a função para limpar o estado
+            className={styles.cancelButton}
         >
+            Cancelar
+        </Button>,
+        <Button
+            key="adicionar"
+            type="primary"
+            onClick={handleCreate}
+            className={styles.addButton}
+            loading={loading}
+        >
+            Adicionar
+        </Button>,
+    ]}
+>
             <Form layout="vertical">
                 <Form.Item required>
                     <Input

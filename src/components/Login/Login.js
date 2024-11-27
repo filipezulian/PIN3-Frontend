@@ -1,8 +1,9 @@
-import { Button, Flex, Form, Input } from 'antd'
-import React from 'react'
+import { Button, Form, Input } from 'antd';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAuth } from "../../context/AuthContext";
+import './Login.css'; // Arquivo CSS para ajustes visuais
 
 const Login = () => {
     const navigate = useNavigate();
@@ -20,13 +21,12 @@ const Login = () => {
     };
 
     return (
-        <Flex vertical gap="large" justify="center" align="center">
+        <div className="login-container">
+            <h1 className="login-title">BRACKETIER</h1>
             <Form
                 name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
-                style={{ maxWidth: 600 }}
-                initialValues={{ remember: true }}
+                layout="vertical"
+                className="login-form"
                 onFinish={onFinish}
                 autoComplete="off"
             >
@@ -34,25 +34,33 @@ const Login = () => {
                     name="email"
                     rules={[{ required: true, message: 'Por favor adicione seu email!' }]}
                 >
-                    <Input placeholder="Informe seu email" />
+                    <Input placeholder="Informe seu email" className="login-input" />
                 </Form.Item>
 
                 <Form.Item
                     name="password"
                     rules={[{ required: true, message: 'Por favor adicione sua senha!' }]}
                 >
-                    <Input.Password placeholder="Informe sua senha" />
+                    <Input.Password placeholder="Informe sua senha" className="login-input" />
                 </Form.Item>
-                <Button type="link">Esqueceu sua senha?</Button>
+                <Button type="link" className="login-forgot">
+                    Esqueceu sua senha?
+                </Button>
 
                 <Form.Item>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" className="login-button">
                         LOGIN
                     </Button>
                 </Form.Item>
             </Form>
-            <Button type="link">Não tem uma conta? Cadastre-se</Button>
-        </Flex>
+            <Button
+                type="link"
+                className="login-register"
+                onClick={() => navigate("/cadastro")}
+            >
+                Não tem uma conta? Cadastre-se
+            </Button>
+        </div>
     );
 };
 

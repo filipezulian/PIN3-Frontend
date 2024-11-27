@@ -147,7 +147,6 @@ const JogadoresTable = () => {
             >
               <Option value="Feminino">Feminino</Option>
               <Option value="Masculino">Masculino</Option>
-              <Option value="Misto">Misto</Option>
             </Select>
           </Form.Item>
         </Form>
