@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  padding: 20px;
+}
+
+.formContainer {
+  width: 30%;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  margin-right: 20px;
+}
+
+.formContainer h2 {
+  text-align: center;
+}
+
+.buttonContainer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btnCriarNovo {
+  background-color: #F1AF19;
+  color: white;
+  border: none;
+}
+
+.btnCriarNovo:hover {
+  background-color: #d99416;
+}
+
+.tableContainer {
+  flex: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+}

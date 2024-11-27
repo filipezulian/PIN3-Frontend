@@ -158,6 +158,33 @@ const GerarTimeTable = () => {
         setEditingTeam(null); // Finaliza a edição
     };
 
+    const handleConfirmarECriar = async () => {
+        if (!timesGerados) {
+            toast.error("Nenhum time gerado para criar.");
+            return;
+        }
+
+        const payload = {
+            times: Object.keys(timesGerados).map((key) => ({
+                tim_name: timesGerados[key].tim_name,
+                tim_gender: generoSelecionado,
+                jogadores: timesGerados[key].jogadores,
+            })),
+        };
+
+        try {
+            await axios.post(`${process.env.REACT_APP_API_URL}/time/multiple`, payload, {
+                headers: {
+                    Authorization: token,
+                    'Content-Type': 'application/json',
+                },
+            });            
+            toast.success("Times criados com sucesso!");
+        } catch (err) {
+            toast.error("Erro ao criar os times. Tente novamente.");
+        }
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.formContainer}>
@@ -289,6 +316,20 @@ const GerarTimeTable = () => {
                         </Button>
                     </div>
                 )}
+                <div className={styles.buttonContainer}>
+                    <Button
+                        type="primary"
+                        style={{
+                            backgroundColor: "#F1AF19",
+                            borderColor: "#F1AF19",
+                            height: "40px",
+                            fontWeight: "bold",
+                        }}
+                        onClick={handleConfirmarECriar}
+                    >
+                        Confirmar e Criar
+                    </Button>
+                </div>
             </div>
         </div>
     );

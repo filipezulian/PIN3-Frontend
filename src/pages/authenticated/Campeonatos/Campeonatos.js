@@ -1,9 +1,14 @@
 import React from 'react'
+import CampeonatosTable from '../../../components/campeonatos/campeonatosTable';
 
 const Campeonatos = () => {
   return (
-    <div>Campeonatos</div>
-  )
-}
+    <div>
+      {/* Renderizando diretamente o componente de tabela */}
+      <CampeonatosTable />
+    </div>
+  );
+};
 
 export default Campeonatos
+

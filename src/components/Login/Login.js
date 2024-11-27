@@ -43,9 +43,14 @@ const Login = () => {
                 >
                     <Input.Password placeholder="Informe sua senha" className="login-input" />
                 </Form.Item>
-                <Button type="link" className="login-forgot">
+                <Button
+                    type="link"
+                    className="login-forgot"
+                    onClick={() => navigate("/recuperar-senha")} 
+                >
                     Esqueceu sua senha?
                 </Button>
+
 
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="login-button">
