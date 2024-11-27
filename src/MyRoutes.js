@@ -13,6 +13,7 @@ import Times from "./pages/authenticated/Times/Times"
 import Chaveamentos from "./pages/authenticated/Chaveamentos/Chaveamentos"
 import GenerateChaveamento from "./pages/authenticated/Chaveamentos/GenerateChaveamento";
 import GeneratedBracket from "./pages/authenticated/Chaveamentos/GeneratedBracket";
+import GerarTimeTable from "./components/times/gerarTimeTable";
 
 const AuthenticatedRoutes = ({ children }) => {
     const user = Cookies.get("user");
@@ -94,6 +95,16 @@ const MyRoutes = () => {
                     <AuthenticatedRoutes>
                         <SystemLayout>
                             <GeneratedBracket />
+                        </SystemLayout>
+                    </AuthenticatedRoutes>
+                }
+            />
+            <Route
+                path="/gerarTime"
+                element={
+                    <AuthenticatedRoutes>
+                        <SystemLayout>
+                            <GerarTimeTable />
                         </SystemLayout>
                     </AuthenticatedRoutes>
                 }

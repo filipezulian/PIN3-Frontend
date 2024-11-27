@@ -1,3 +1,4 @@
+/* eslint react-hooks/exhaustive-deps: "off" */
 import { Card } from 'antd'
 import Meta from 'antd/es/card/Meta'
 import React, { useEffect, useState } from "react";

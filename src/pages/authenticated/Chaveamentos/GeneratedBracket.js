@@ -8,7 +8,8 @@ const GeneratedBracket = () => {
     const location = useLocation();
     const { rounds, name } = location.state || { rounds: [], name: '' };
     const bracketRef = useRef();
-
+    console.log(rounds)
+    
     const downloadPDF = async () => {
         if (!bracketRef.current) return;
 

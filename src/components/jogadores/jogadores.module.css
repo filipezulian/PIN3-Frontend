@@ -28,7 +28,8 @@
 }
 
 .btnCriarNovo,
-.btnCriarNovo:hover
+.btnCriarNovo:hover,
+.btnGerarTimes
  {
   width: 150px;
   height: 40px;
@@ -99,4 +100,22 @@
 .statsTable th {
   background-color: #f9f9f9;
   font-weight: bold;
+}
+
+.addButton,
+.addButton:hover
+ {
+  border-radius: 5px;
+  background-color: #F1AF19 !important;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.statisticsButton {
+  background-color: #B3B3B3 !important; 
+  color: white !important;
+  border: none;
 }

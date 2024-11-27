@@ -1,0 +1,31 @@
+.statsBox {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.statsTitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.statsValue {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.cancelButton {
+    background-color: #B3B3B3 !important;
+    color: #FFFFFF !important;
+    border: none;
+}
+
+.downloadButton {
+    background-color: #F1AF19 !important;
+    color: #FFFFFF !important;
+    border: none;
+}
+

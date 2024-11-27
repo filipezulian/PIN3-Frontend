@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Spin, Button, Form, Input } from 'antd';
+import { Table, Spin, Button, Form, Input, Select } from 'antd';
 import axios from "axios";
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
@@ -16,6 +16,7 @@ const JogadoresTable = () => {
   const [isEditarJogadorModalOpen, setIsEditarJogadorModalOpen] = useState(false);
   const [novoJogador, setNovoJogador] = useState({ nome: "", genero: "" });
   const [jogadorSelecionado, setJogadorSelecionado] = useState(null);
+  const { Option } = Select;
 
   useEffect(() => {
     const getJogadores = async () => {
@@ -36,21 +37,25 @@ const JogadoresTable = () => {
   }, [token]);
 
   const handleFiltroChange = (field, value) => {
-    setFiltros((prev) => ({ ...prev, [field]: value }));
-
+    setFiltros((prev) => ({ ...prev, [field]: value || "" }));
+  
     const filtrados = jogadores.filter((jogador) => {
       const nomeMatch = jogador.jog_name
         .toLowerCase()
-        .includes(field === "nome" ? value.toLowerCase() : filtros.nome.toLowerCase());
-
+        .includes(field === "nome" ? value?.toLowerCase() || "" : filtros.nome.toLowerCase());
+  
       const generoMatch =
         field === "genero"
-          ? jogador.jog_gender.toLowerCase().includes(value.toLowerCase())
-          : jogador.jog_gender.toLowerCase().includes(filtros.genero.toLowerCase());
-
+          ? value
+            ? jogador.jog_gender.toLowerCase() === value.toLowerCase()
+            : true
+          : filtros.genero
+          ? jogador.jog_gender.toLowerCase() === filtros.genero.toLowerCase()
+          : true;
+  
       return nomeMatch && generoMatch;
     });
-
+  
     setJogadoresFiltrados(filtrados);
   };
 
@@ -134,11 +139,16 @@ const JogadoresTable = () => {
             />
           </Form.Item>
           <Form.Item>
-            <Input
-              placeholder="Digite o gênero"
-              value={filtros.genero}
-              onChange={(e) => handleFiltroChange("genero", e.target.value)}
-            />
+          <Select
+              placeholder="Selecione o gênero"
+              value={filtros.genero || undefined}
+              onChange={(value) => handleFiltroChange("genero", value)}
+              allowClear
+            >
+              <Option value="Feminino">Feminino</Option>
+              <Option value="Masculino">Masculino</Option>
+              <Option value="Misto">Misto</Option>
+            </Select>
           </Form.Item>
         </Form>
         <div className={styles.buttonContainer}>

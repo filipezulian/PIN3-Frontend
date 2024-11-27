@@ -1,0 +1,185 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 16px;
+    gap: 24px;
+}
+.formContainer,
+.tableContainer {
+    width: 48%; /* Mantém o equilíbrio entre os dois lados */
+    height: 750px; /* Ajusta automaticamente ao conteúdo */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px; /* Espaçamento entre elementos internos */
+}
+
+.formContainer h2,
+.tableContainer h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: auto; /* Empurra o botão para baixo */
+}
+.btnCriarNovo,
+.btnGerarTimes {
+    width: 150px;
+    height: 40px;
+    background-color: #F1AF19 !important;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.selectedPlayers {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.selectedPlayerTag {
+    width: 100px !important; 
+    height: 40px !important; 
+    background-color: #F5F5F5 !important; 
+    color: #000 !important;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    font-size: 16px; 
+    border-radius: 5px;
+    border: 1px solid #D9D9D9; 
+    padding: 0 !important; 
+    box-sizing: border-box; 
+    cursor: pointer; 
+}
+
+.timesGeradosContainer {
+    width: 48%; /* Mantém o equilíbrio entre os dois lados */
+    height: 750px; /* Altura total do componente */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha o conteúdo no topo */
+    overflow-y: auto; /* Permite scroll se necessário */
+}
+
+.timesWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta o número de colunas automaticamente */
+    gap: 20px; /* Espaçamento entre os times */
+    align-content: flex-start; /* Alinha os itens no topo */
+    justify-items: stretch; /* Estica os cartões para ocupar a largura da coluna */
+    height: auto; /* Deixe a altura se ajustar ao conteúdo */
+}
+
+/* Estilo para cada time (card) */
+.timeCard {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabeçalho do time */
+.timeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Nome do time */
+.timeHeader h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Botão de edição */
+.editButton {
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Lista de jogadores */
+.playerList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.playerList li {
+    padding: 8px;
+    font-size: 16px;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+}
+
+.playerList li:last-child {
+    border-bottom: none;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: auto;
+    gap: 10px;
+}
+
+.pagination button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    color: #000 ;
+}
+
+.pagination button[disabled] {
+    color: #ccc; 
+    cursor: not-allowed;
+}
+
+.pageIndicator {
+    font-size: 13px;
+    color: #333;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f5f5f5;
+}
+
+.btnAssociar {
+    margin-top: 10px;
+    width: 150px;
+    height: 40px;
+    background-color: #F1AF19 !important;
+    color: white !important;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
